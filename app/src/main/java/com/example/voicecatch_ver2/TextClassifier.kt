@@ -3,8 +3,6 @@ package com.example.voicecatch_ver2
 import android.content.Context
 import android.content.res.AssetManager
 import android.util.Log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
 import java.nio.ByteBuffer
@@ -20,55 +18,56 @@ class TextClassifier(private val context: Context) {
     private val vocabPath = "bert/vocab.txt"
     private val maxSeqLength = 256
 
-    // 초기화 함수: 모델과 토크나이저를 로드합니다. 파일 I/O가 있으므로 suspend 함수로 만듭니다.
-    suspend fun initialize() {
+    // --- 수정된 부분 1 ---
+    // withContext를 제거하여 일반 함수로 변경합니다.
+    fun initialize() {
         if (isInitialized) return
 
-        withContext(Dispatchers.IO) {
-            try {
-                val model = loadModelFile(context.assets, modelPath)
-                val options = Interpreter.Options()
-                tflite = Interpreter(model, options)
-                tokenizer = KoBertTokenizer(context.assets, vocabPath)
-                isInitialized = true // 초기화 완료 플래그 설정
-                Log.d(TAG, "Classifier initialized successfully.")
-            } catch (e: Exception) {
-                Log.e(TAG, "Error initializing classifier.", e)
-                throw e // 예외를 다시 던져서 호출자(Activity)가 처리하도록 함
-            }
+        // withContext(Dispatchers.IO) { ... } 제거
+        try {
+            val model = loadModelFile(context.assets, modelPath)
+            val options = Interpreter.Options()
+            tflite = Interpreter(model, options)
+            tokenizer = KoBertTokenizer(context.assets, vocabPath)
+            isInitialized = true // 초기화 완료 플래그 설정
+            Log.d(TAG, "Classifier initialized successfully.")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error initializing classifier.", e)
+            throw e // 예외를 다시 던져서 호출자(Activity)가 처리하도록 함
         }
     }
 
-    // 분류 함수: 텍스트를 입력받아 분류 결과를 문자열로 반환합니다.
-    suspend fun classify(text: String): String {
-        return withContext(Dispatchers.Default) { // CPU-intensive 작업은 Default 디스패처 사용
-            val modelInput = tokenizer.encode(text, maxSeqLength)
+    // --- 수정된 부분 2 ---
+    // withContext를 제거하여 일반 함수로 변경합니다.
+    fun classify(text: String): String {
+        // return withContext(Dispatchers.Default) { ... } 제거
+        val modelInput = tokenizer.encode(text, maxSeqLength)
 
-            // 1. 모델 입력 준비: 각 입력을 [1, 256] 형태의 2D 배열로 만듭니다.
-            val inputIds2D = Array(1) { modelInput.inputIds }
-            val attentionMask2D = Array(1) { modelInput.attentionMask }
+        // 1. 모델 입력 준비
+        val inputIds2D = Array(1) { modelInput.inputIds }
+        val attentionMask2D = Array(1) { modelInput.attentionMask }
 
-            // 2. 입력들을 담을 최상위 배열(Object[])을 생성합니다.
-            val inputsArray = arrayOf(inputIds2D, attentionMask2D)
+        // 2. 입력들을 담을 최상위 배열
+        val inputsArray = arrayOf(inputIds2D, attentionMask2D)
 
-            // 3. 출력들을 받을 맵을 생성합니다. (이 부분은 기존과 동일)
-            val outputLogits = Array(1) { FloatArray(2) }
-            val outputMap = mapOf<Int, Any>(0 to outputLogits)
+        // 3. 출력들을 받을 맵
+        val outputLogits = Array(1) { FloatArray(2) }
+        val outputMap = mapOf<Int, Any>(0 to outputLogits)
 
-            try {
-                // 4. 올바른 파라미터(Array, Map)로 메서드를 호출합니다.
-                tflite.runForMultipleInputsOutputs(inputsArray, outputMap)
-            } catch (e: Exception) {
-                Log.e(TAG, "TFLite inference failed.", e)
-                return@withContext "추론 실패: ${e.message}"
-            }
-
-            // 5. 결과 후처리 및 반환
-            postprocess(outputLogits[0])
+        try {
+            // 4. 모델 실행
+            tflite.runForMultipleInputsOutputs(inputsArray, outputMap)
+        } catch (e: Exception) {
+            Log.e(TAG, "TFLite inference failed.", e)
+            // return@withContext 대신 일반 return 사용
+            return "추론 실패: ${e.message}"
         }
+
+        // 5. 결과 후처리 및 반환
+        return postprocess(outputLogits[0])
     }
 
-    // 리소스 해제 함수
+    // 리소스 해제 함수 (변경 없음)
     fun close() {
         if (::tflite.isInitialized) {
             tflite.close()
@@ -76,6 +75,7 @@ class TextClassifier(private val context: Context) {
         }
     }
 
+    // (이하 헬퍼 함수들은 변경 없음)
     private fun loadModelFile(assetManager: AssetManager, modelPath: String): ByteBuffer {
         val fileDescriptor = assetManager.openFd(modelPath)
         val inputStream = FileInputStream(fileDescriptor.fileDescriptor)

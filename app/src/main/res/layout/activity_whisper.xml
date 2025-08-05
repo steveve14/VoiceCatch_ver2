@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.whispertflite.MainActivity">
+    tools:context="com.example.voicecatch_ver2.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:layout_weight="1"
             android:layout_marginEnd="8dp" />
 
-        <Spinner
+        <TextView
             android:id="@+id/spnrTfliteFiles"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -35,24 +35,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnSelectFile"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_button_background"
+            android:text="파일 선택" />
 
         <TextView
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/colorPrimary"
-            android:text="Select input file: "
-            android:layout_weight="1"
-            android:layout_marginEnd="8dp" />
-
-        <Spinner
-            android:id="@+id/spnrWaveFiles"
+            android:id="@+id/tvSelectedFileName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:layout_marginEnd="4dp" />
+            android:paddingStart="8dp"
+            android:text="선택된 파일 없음" />
     </LinearLayout>
 
     <LinearLayout
@@ -142,7 +144,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnBertTest"
+            android:id="@+id/btnAnalyzeWithBert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
