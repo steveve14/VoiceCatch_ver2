@@ -2,7 +2,7 @@
 
 ##  개인 프로젝트
 
-### &nbsp 데이터 수집 
+&nbsp ### 데이터 수집 
 #### 보이스 피싱
 ##### KT 통신 빅데이터 플랫폼 - [휴대전화 스팸트랩 음성 수집 내역](https://bdp.kt.co.kr/invoke/SOKBP2602/)
 ##### 금융 감독원 - [보이스피싱 체험관](https://www.fss.or.kr/fss/bbs/B0000203/list.do?menuNo=200686):
