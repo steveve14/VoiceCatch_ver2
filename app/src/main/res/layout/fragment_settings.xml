@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 이 부분을 다시 추가합니다 -->
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/autoSendSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="메시지 자동 전송"
+        android:textColor="@color/primary_text"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이 옵션을 활성화하면 메시지 앱을 거치지 않고 바로 전송됩니다. (SMS 요금 발생 가능)"
+        android:textSize="14sp"
+        android:textColor="@color/primary_text"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="24dp"/>
+    <!-- 여기까지 추가 -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="수신 전화번호"
+        android:textColor="@color/primary_text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/currentPhoneNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/primary_text"
+        android:text="설정된 번호가 없습니다."
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/selectContactButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/GoogleBlue"
+        android:textStyle="bold"
+        android:text="연락처에서 번호 선택" />
+
+</LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="buttonBackground">#FF4081</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="GoogleBlue">#4285f4</color>
+    <color name="GoogleGray">#E6E6E6</color>
+    <color name="GoogleRed">#eb4034</color>
+
+    <!-- 메인 색상 -->
+    <color name="primary_text">#111418</color>
+    <color name="secondary_text">#60758a</color>
+    <color name="success_text">#078838</color>
+    <color name="background_white">#FFFFFF</color>
+    <color name="background_light_gray">#f0f2f5</color>
+
+    <!-- 네비게이션 색상 -->
+    <color name="nav_active">#111418</color>
+    <color name="nav_inactive">#60758a</color>
+
+    <!-- 카드 색상 -->
+    <color name="card_background">#f0f2f5</color>
+    <color name="card_elevation_shadow">#1A000000</color>
+
+    <!-- 상태별 색상 -->
+    <color name="positive_change">#078838</color>
+    <color name="negative_change">#d32f2f</color>
+    <color name="neutral_change">#60758a</color>
+
+    <!-- 앱에서 사용할 색상 -->
+    <color name="active_nav_color">#111418</color>
+    <color name="inactive_nav_color">#60758a</color>
+    <color name="chart_line_color">#078838</color>
+    <color name="chart_fill_color">#E6F4EA</color>
+</resources>

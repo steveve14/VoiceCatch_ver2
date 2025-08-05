@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_drawer_home"
+            android:icon="@drawable/ic_home"
+            android:title="메인 화면" />
+    </group>
+
+    <!-- 개발자/테스트용 메뉴 그룹 추가 -->
+    <item android:title="개발자 도구">
+        <menu>
+            <item
+                android:id="@+id/nav_drawer_create_dummy_file"
+                android:icon="@drawable/ic_add_file"
+                android:title="더미 파일 생성" />
+
+            <item
+                android:id="@+id/nav_drawer_create_dummy_file_v"
+                android:icon="@drawable/ic_add_file"
+                android:title="더미 파일 생성(보이스피싱)" />
+
+            <item
+                android:id="@+id/nav_drawer_messages"
+                android:icon="@drawable/ic_back"
+                android:title="메시지" />
+
+            <item
+                android:id="@+id/nav_drawer_whisper"
+                android:icon="@drawable/ic_back"
+                android:title="WhisperTest" />
+
+            <item
+                android:id="@+id/nav_drawer_bert"
+                android:icon="@drawable/ic_back"
+                android:title="BERTTest" />
+        </menu>
+    </item>
+
+    <item android:title="기타">
+        <menu>
+            <item
+                android:id="@+id/nav_drawer_share"
+                android:icon="@drawable/ic_share"
+                android:title="공유하기" />
+            <item
+                android:id="@+id/nav_drawer_send"
+                android:icon="@drawable/ic_send"
+                android:title="의견 보내기" />
+        </menu>
+    </item>
+</menu>
