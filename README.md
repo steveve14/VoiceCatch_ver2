@@ -19,7 +19,7 @@
   
 ### 안드로이드 whisper 작동 코드 
    > (whisper_android_github)[https://github.com/vilassn/whisper_android] <br/>
-   > ex) 2025-8 기준 java 버전 한글 오류로 인해 cpp 버전 사용 되었습니다.
+   > ex) 2025-8 기준 java 버전 한글 오류로 인해 cpp 버전이 사용 되었습니다.
 
 ## EX
    > 보이스 피싱 데이터의 부족으로 인한 모델 정확도를 보장할수 없습니다. <br/>
